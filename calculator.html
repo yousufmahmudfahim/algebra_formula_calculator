@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <script src="js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <!-- html start -->
+    <h1>Calculator</h1>
+    <!-- form start -->
+    <form id="form-style" action="" method="post">
+        <input id="value1" type="text">
+        <select id="oparetion">
+            <option value="">select oparetion</option>
+            <option id="oparetion1" value="1">sum +</option>
+            <option id="oparetion2" value="2">min -</option>
+            <option id="oparetion3" value="3">mul *</option>
+            <option id="oparetion4" value="4">div /</option>
+            <option id="oparetion5" value="5">powre ^</option>
+            <option id="oparetion6" value="6">(a+b)^2</option>
+            <option id="oparetion7" value="7">(a-b)^2</option>
+            <option id="oparetion8" value="8">a^2+b^2</option>
+            <option id="oparetion9" value="9">a^2-b^2</option>
+            <option id="oparetion10" value="10">(a+b)^3</option>
+            <option id="oparetion10" value="11">(a-b)^3</option>
+            <option id="oparetion10" value="12">a^3+b^3</option>
+            <option id="oparetion10" value="13">a^3-b^3</option>
+        </select>
+        <input id="value2" type="text">
+        <a id="submit" href="#">result</a>
+    </form>
+    <!-- form end -->
+    <div id="result">
+
+    </div>
+    <!-- html end -->
+</body>
+<!-- jquery start -->
+<script type="text/javascript">
+    $(function() {
+        var client = 1;
+        if(client == 0){
+            clientCss();
+        }else{
+            myCss();
+        }
+    });
+    // myCss start
+    function myCss()
+        {
+            $("body").css({
+                "background":"skyblue"
+            });
+            $("h1").css({
+                "font-size":"30px",
+                "text-align":"center"
+            });
+            $("#form-style").css({
+                "width":"400px", 
+                "margin":"0 auto",
+                "height":"auto"
+
+            });   
+            $("input").css({
+                "width":"100%",
+                "padding":"10px"
+            }); 
+            $("select").css({
+                "width":"425px",
+                "padding":"10px"
+            });  
+            $("#result").html(0).css({
+                "background":"red",
+                "width":"400px",
+                "height":"20px",
+                "margin":"0 auto",
+                "padding":"10px",
+                "font-size":"20px",
+                "text-align":"center"
+            });
+            $("a").css({
+                "display":"inline-block",
+                "text-decoration":"none",
+                "text-transform":"uppercase",
+                "border":"1px solid #cccccc",
+                "width":"100%",
+                "backgroung-color":"#000000",
+                "text-align":"center",
+                "padding":"10px"
+            });        
+        } 
+    // myCss end
+    // client css start
+    function clientCss()
+        {
+            $("body").css({
+                "background":"blue"
+            });
+            $("h1").css({
+                "font-size":"30px",
+                "text-align":"center"
+            });
+            $("#form-style").css({
+                "width":"400px", 
+                "margin":"0 auto",
+                "height":"auto"
+
+            });   
+            $("input").css({
+                "width":"100%",
+                "padding":"10px"
+            }); 
+            $("select").css({
+                "width":"425px",
+                "padding":"10px"
+            });  
+            $("#result").html(0).css({
+                "background":"red",
+                "width":"400px",
+                "height":"20px",
+                "margin":"0 auto",
+                "padding":"10px",
+                "font-size":"20px",
+                "text-align":"center"
+            });
+            $("a").css({
+                "display":"inline-block",
+                "text-decoration":"none",
+                "text-transform":"uppercase",
+                "border":"1px solid #cccccc",
+                "width":"100%",
+                "backgroung-color":"#000000",
+                "text-align":"center",
+                "padding":"10px",
+                "color":"white"
+            });        
+        } 
+    // client css end
+    // oparetion 
+
+    // end oparetion
+    $("#submit").click(function(){
+       var value_1 = parseInt($("#value1").val());
+       var value_2 = parseInt($("#value2").val());
+       var oparetion = parseInt($("#oparetion").val());
+
+       if(oparetion == 1){
+            var result = sumOparetion(value_1,value_2);
+       }else if (oparetion == 2){
+            var result = minOparetion(value_1,value_2);
+       }else if (oparetion == 3){
+            var result = mulOparetion(value_1,value_2);
+       }else if (oparetion == 4){
+            var result = divOparetion(value_1,value_2);
+       }else if(oparetion == 5){
+            var result = powerOparetion(value_1,value_2);
+       }else if(oparetion == 6){
+            var result = squerOparetion(value_1,value_2);
+       }else if(oparetion == 7){
+            var result = squer2Oparetion(value_1,value_2);
+       }else if(oparetion == 8){
+            var result = a2subb2Oparetion(value_1,value_2);
+       }else if (oparetion == 9){
+            var result = a2mnib2Oparetion(value_1,value_2);  
+       }else if (oparetion == 10){
+            var result = aplusb3Oparetion(value_1,value_2);  
+       }else if (oparetion == 11){
+            var result = aminb3Oparetion(value_1,value_2);  
+       }else if (oparetion == 12){
+            var result = a3plusb3Oparetion(value_1,value_2);  
+       }else if (oparetion == 13){
+            var result = a3minb3Oparetion(value_1,value_2);  
+       }
+
+        // var Result = value_1 + value_2;
+        // alert(oparetion);
+       $("#result").html(result);
+    });
+
+    // sum function
+    function sumOparetion(a,b){
+        var result = a + b;
+        return result;
+    }
+
+    // min function
+    function minOparetion(a,b){
+        var result = a - b;
+        return result;
+    }
+
+    //  mul function
+    function mulOparetion(a,b){
+        var result = a * b;
+        return result;
+    }
+
+    // div function
+    function divOparetion(a,b){
+        var result = a / b;
+        return result;
+    }
+
+    // power function
+    function powerOparetion(a,b){
+        var result = 1;
+        for(i=1;i<=b;i++){
+            result=result*a;
+        }
+        return result;
+    }
+    // squre function
+    function squerOparetion(a,b){
+        var x = powerOparetion(a,2);
+        var y = 2*mulOparetion(a,b);
+        var z = powerOparetion(b,2);
+        var result = x+y+z;
+        return result;
+    }
+    function squer2Oparetion(a,b){
+        var x = powerOparetion(a,2);
+        var y = 2*mulOparetion(a,b);
+        var z = powerOparetion(b,2);
+        var result=x-y+z;
+        return result;
+    }
+    function a2subb2Oparetion(a,b){
+        var x = squer2Oparetion(a,b,2);
+        var y = 2*mulOparetion(a,b);
+        var result = x + y;
+        return result;
+    }
+    function a2mnib2Oparetion(a,b){
+        var x = minOparetion(a,b);
+        var y = sumOparetion(a,b);
+        var result = x*y;
+        return result;
+    }
+    // qube function
+
+    // (a+b)^3 = a3 + b3 + 3ab(a + b)
+    function aplusb3Oparetion(a,b){
+        var x = powerOparetion(a,3);
+        var y = powerOparetion(b,3);
+        var z = 3*mulOparetion(a,b);
+        var w = sumOparetion(a,b);
+        var result = x+y+z*w;
+        return result;
+    }
+    
+    // (a-b)^3 = a3 - b3 - 3ab(a - b)
+    function aminb3Oparetion(a,b){
+        var x = powerOparetion(a,3);
+        var y = powerOparetion(b,3);
+        var z = 3*mulOparetion(a,b);
+        var w = minOparetion(a,b);
+        var result = x-y-z*w;
+        return result;
+    }
+
+    // a3 + b3 = (a + b)3-3ab(a+b)
+
+    function a3plusb3Oparetion(a,b){
+        var x = aplusb3Oparetion(a,b);
+        var y = 3*mulOparetion(a,b);
+        var z = sumOparetion(a,b);
+        var result = x-y*z;
+        return result;
+    }
+
+    // a3 - b3 = (a – b)(a2 + ab + b2)
+
+    function a3minb3Oparetion(a,b){
+        var x = minOparetion(a,b);
+        var y = powerOparetion(a,2);
+        var z = mulOparetion(a,b);
+        var w = powerOparetion(b,2);
+        var s = y+z+w;
+        var result = x*s;
+        return result;
+    }
+
+    
+
+</script>
+<!-- jquery end -->
+</html>
